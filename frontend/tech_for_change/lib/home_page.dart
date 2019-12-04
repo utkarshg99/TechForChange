@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
-        color: Colors.indigo[600],
+        color: Colors.deepPurple[450],
         elevation: 10,
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -20,13 +20,13 @@ class HomePage extends StatelessWidget {
               leading: Icon(
                 icon,
                 size: 60.0,
-                color: Colors.black54,
+                color: Colors.black87,
               ),
               title: Text(
                 text,
                 style: TextStyle(
                   fontSize: 25.0,
-                  color: Colors.white
+                  color: Colors.black
                 ),
               ),
             ),
@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
                     child: Text(
                       buttext,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.deepPurple,
                         fontSize: 15.0
                       ),  
                     ),
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox.expand(
       child: Container(
-        color: Color(0xFF8185E2),
+        color: Colors.white,
         child: Column(
           children: <Widget>[
             SizedBox(height: 40.0,),
