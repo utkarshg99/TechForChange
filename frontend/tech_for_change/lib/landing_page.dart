@@ -18,36 +18,46 @@ class LandingPage extends StatelessWidget {
             SizedBox(
               height: 200.0,
             ),
-            RaisedButton(
-              onPressed: (){},
-              color: Colors.deepPurple[400],
-              padding: EdgeInsets.fromLTRB(80.0, 15.0, 80.0, 15.0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0)
-              ),
-              child: Text(
-                "Login",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.white
+            SizedBox(
+              width: 250.0,
+              child: RaisedButton(
+                onPressed: (){
+                  Navigator.of(context).pushNamed('/login');
+                },
+                color: Colors.deepPurple[400],
+                padding: EdgeInsets.fromLTRB(80.0, 15.0, 80.0, 15.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0)
+                ),
+                child: Text(
+                  "Login",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white
+                  ),
                 ),
               ),
             ),
             SizedBox(
               height: 50.0,
             ),
-            RaisedButton(
-              onPressed: (){},
-              color: Colors.deepPurple[400],
-              padding: EdgeInsets.fromLTRB(80.0, 15.0, 80.0, 15.0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0)
-              ),
-              child: Text(
-                "Register",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.white
+            SizedBox(
+              width : 250.0,
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/register');
+                },
+                color: Colors.deepPurple[400],
+                padding: EdgeInsets.fromLTRB(80.0, 15.0, 80.0, 15.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0)
+                ),
+                child: Text(
+                  "Register",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),    

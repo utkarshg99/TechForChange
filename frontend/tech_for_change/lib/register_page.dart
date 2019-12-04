@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tech_for_change/landing_page.dart';
 
-class LoginPage extends StatelessWidget {
+class RegPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +36,7 @@ class LoginPage extends StatelessWidget {
                     height: 80.0,
                   ),
                   Text(
-                    "Login",
+                    "Register",
                     style: TextStyle(
                       fontSize: 50.0
                     ),
@@ -49,7 +48,39 @@ class LoginPage extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
+                          padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              color: Colors.black45,
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10.0),
+                              child: TextFormField(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16.0,
+                                ),
+                                obscureText: false,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Name',
+                                  hintStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16.0,
+                                  ),
+                                  icon: Icon(
+                                    Icons.person,
+                                    color: Colors.white,
+                                  )
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                           child: DecoratedBox(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(30.0)),
@@ -112,6 +143,38 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                         ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              color: Colors.black45,
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10.0),
+                              child: TextFormField(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16.0,
+                                ),
+                                obscureText: true,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Confirm Password',
+                                  hintStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16.0,
+                                  ),
+                                  icon: Icon(
+                                    Icons.lock_open,
+                                    color: Colors.white,
+                                  )
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                         SizedBox(
                           height: 35.0,
                         ),
@@ -137,7 +200,7 @@ class LoginPage extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        ), 
       ),
     );
   }
