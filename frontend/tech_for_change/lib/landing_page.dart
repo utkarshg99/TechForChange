@@ -22,7 +22,7 @@ class LandingPage extends StatelessWidget {
               width: 250.0,
               child: RaisedButton(
                 onPressed: (){
-                  Navigator.of(context).pushNamed('/login');
+                  Navigator.of(context).pushNamed('/dashboard');
                 },
                 color: Colors.deepPurple[400],
                 padding: EdgeInsets.fromLTRB(80.0, 15.0, 80.0, 15.0),
