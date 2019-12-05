@@ -1,6 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:tech_for_change/auth_state.dart';
+import 'package:tech_for_change/login_page.dart';
+import 'package:tech_for_change/register_page.dart';
 
 class LandingPage extends StatelessWidget {
+  final StreamController<AuthenticationState> _streamController;
+
+  LandingPage(this._streamController);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +31,10 @@ class LandingPage extends StatelessWidget {
               width: 250.0,
               child: RaisedButton(
                 onPressed: (){
-                  Navigator.of(context).pushNamed('/dashboard');
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (context) => LoginPage(_streamController))
+                  );
                 },
                 color: Colors.deepPurple[400],
                 padding: EdgeInsets.fromLTRB(80.0, 15.0, 80.0, 15.0),
@@ -45,7 +57,10 @@ class LandingPage extends StatelessWidget {
               width : 250.0,
               child: RaisedButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/register');
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (context) => RegPage())
+                  );
                 },
                 color: Colors.deepPurple[400],
                 padding: EdgeInsets.fromLTRB(80.0, 15.0, 80.0, 15.0),

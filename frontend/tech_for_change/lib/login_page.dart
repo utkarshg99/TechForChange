@@ -1,7 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:tech_for_change/auth_state.dart';
 import 'package:tech_for_change/landing_page.dart';
 
 class LoginPage extends StatelessWidget {
+  
+  final StreamController<AuthenticationState> _streamController;
+
+  LoginPage(this._streamController);
+
+  login() async {
+    _streamController.add(AuthenticationState.authenticated());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +128,10 @@ class LoginPage extends StatelessWidget {
                           height: 35.0,
                         ),
                         RaisedButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.of(context).pop();
+                            login();
+                          },
                           color: Colors.deepPurple[400],
                           padding: EdgeInsets.fromLTRB(60.0, 15.0, 60.0, 15.0),
                           shape: RoundedRectangleBorder(

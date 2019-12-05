@@ -1,16 +1,20 @@
 import 'dart:async';
 import "package:flutter/material.dart";
 import 'package:tech_for_change/auth_state.dart';
+import 'package:tech_for_change/dashboard.dart';
+import 'package:tech_for_change/landing_page.dart';
 
 class BuilderPage extends StatelessWidget {
-  final StreamController<AuthenticationState> _streamController = new StreamController<AuthenticationState>();
+  final StreamController<AuthenticationState> _streamController = new StreamController<AuthenticationState>.broadcast();
 
   Widget buildUI(BuildContext context, AuthenticationState authState){
-    // if(authState.authenticated){
-    //   return 
-    // }
-    // else{
-    // }
+    print(authState.authenticated);
+    if(authState.authenticated){
+      return Dashboard(_streamController);
+    }
+    else{
+      return LandingPage(_streamController);
+    }
   }
 
   @override
