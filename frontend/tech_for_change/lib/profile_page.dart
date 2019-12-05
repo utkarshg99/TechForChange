@@ -20,14 +20,12 @@ class MapScreenState extends State<ProfilePage>
   Widget build(BuildContext context) {
     return new Scaffold(
         body: new Container(
-      color: Colors.white,
       child: new ListView(
         children: <Widget>[
           Column(
             children: <Widget>[
               new Container(
                 height: 250.0,
-                color: Colors.white,
                 child: new Column(
                   children: <Widget>[
                     Padding(
@@ -71,7 +69,6 @@ class MapScreenState extends State<ProfilePage>
                 ),
               ),
               new Container(
-                color: Color(0xffFFFFFF),
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 25.0),
                   child: new Column(

@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:tech_for_change/bottom_navy_bar.dart';
 import 'package:tech_for_change/home_page.dart';
 import 'package:tech_for_change/profile_page.dart';
+import 'package:tech_for_change/settings_page.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -36,7 +37,7 @@ class _DashboardState extends State<Dashboard> {
           children: <Widget>[
             Container(child: HomePage(),),
             Container(child: ProfilePage()),
-            Container(color: Colors.green,),
+            Container(child: SettingsPage(),),
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  Widget RoundCard(double height, IconData icon, String text, String buttext){
+  Widget RoundCard(double height, IconData icon, String text, String buttext, Color color){
     return Container(
       margin: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 30.0),
       child: Card(
@@ -26,18 +26,20 @@ class HomePage extends StatelessWidget {
                 text,
                 style: TextStyle(
                   fontSize: 25.0,
-                  color: Colors.black
+                  // color: Colors.black
                 ),
               ),
             ),
             ButtonTheme.bar(
+              splashColor: color==Colors.deepPurple ? Colors.deepPurple[200] : Colors.white24,
+              highlightColor: color==Colors.deepPurple ? Colors.deepPurple[200] : Colors.white24,
               child: ButtonBar(
                 children: <Widget>[
                   FlatButton(
                     child: Text(
                       buttext,
                       style: TextStyle(
-                        color: Colors.deepPurple,
+                        color: color,
                         fontSize: 15.0
                       ),  
                     ),
@@ -56,14 +58,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox.expand(
       child: Container(
-        color: Colors.white,
         child: Column(
           children: <Widget>[
             SizedBox(height: 40.0,),
-            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.note_add, "New Recording", "New"),
-            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.view_list, "View Reports", "View"),
-            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.person_pin_circle, "Book Appointment", "Book"),
-            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.chat, "Chat", "Open"),
+            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.note_add, "New Recording", "New", Theme.of(context).primaryColor),
+            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.view_list, "View Reports", "View", Theme.of(context).primaryColor),
+            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.person_pin_circle, "Book Appointment", "Book", Theme.of(context).primaryColor),
+            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.chat, "Chat", "Open", Theme.of(context).primaryColor),
           ],
         ),
       ),
