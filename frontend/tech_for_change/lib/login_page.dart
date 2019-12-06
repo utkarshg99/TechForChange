@@ -1,17 +1,50 @@
 import 'dart:async';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:tech_for_change/auth_state.dart';
 import 'package:tech_for_change/landing_page.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   
   final StreamController<AuthenticationState> _streamController;
 
+
   LoginPage(this._streamController);
 
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String _email, _password;
+
+  final _formKey = GlobalKey<FormState>();
+
   login() async {
-    _streamController.add(AuthenticationState.authenticated());
+    widget._streamController.add(AuthenticationState.authenticated());
+  }
+
+  Future<String> getLogin() async {
+    var response = await http.post(
+      Uri.encodeFull(''),
+      headers: {
+        "Accepted" : "application/json",
+      },
+      body: {
+        "email" : _email,
+        "pass" : _password,
+      }
+    );
+
+    print(response);
+  }
+
+  loginUser(){
+    if(_formKey.currentState.validate()){
+      _formKey.currentState.save();
+      Scaffold.of(context).showSnackBar(SnackBar(content : Text('Processing Data')));
+      getLogin();
+    }
   }
 
   @override
@@ -58,6 +91,7 @@ class LoginPage extends StatelessWidget {
                     height: 90.0,
                   ),
                   Form(
+                    key: _formKey,
                     child: Column(
                       children: <Widget>[
                         Container(
@@ -70,6 +104,10 @@ class LoginPage extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.only(left: 10.0),
                               child: TextFormField(
+                                validator: (value) => (value.isEmpty) ? "Required Field" : null,
+                                onSaved: (value){
+                                  _email = value;
+                                },
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 16.0,
@@ -102,6 +140,10 @@ class LoginPage extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.only(left: 10.0),
                               child: TextFormField(
+                                validator: (value) => (value.isEmpty) ? "Required Field" : null,
+                                onSaved: (value){
+                                  _password = value;
+                                },
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 16.0,

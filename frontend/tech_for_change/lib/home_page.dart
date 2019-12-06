@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tech_for_change/recording_page.dart';
 
 class HomePage extends StatelessWidget {
-  Widget RoundCard(double height, IconData icon, String text, String buttext, Color color){
+  Widget RoundCard(double height, IconData icon, String text, String buttext, Color color, context, route){
     return Container(
       margin: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 30.0),
       child: Card(
@@ -43,7 +44,10 @@ class HomePage extends StatelessWidget {
                         fontSize: 15.0
                       ),  
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, 
+                      MaterialPageRoute(builder: (context) => route));
+                    },
                   ),
                 ],
               ),
@@ -61,10 +65,10 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             SizedBox(height: 40.0,),
-            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.note_add, "New Recording", "New", Theme.of(context).primaryColor),
-            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.view_list, "View Reports", "View", Theme.of(context).primaryColor),
-            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.person_pin_circle, "Book Appointment", "Book", Theme.of(context).primaryColor),
-            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.chat, "Chat", "Open", Theme.of(context).primaryColor),
+            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.note_add, "New Recording", "New", Theme.of(context).primaryColor, context, RecPage()),
+            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.view_list, "View Reports", "View", Theme.of(context).primaryColor, context, RecPage()),
+            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.person_pin_circle, "Book Appointment", "Book", Theme.of(context).primaryColor, context, RecPage()),
+            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.chat, "Chat", "Open", Theme.of(context).primaryColor, context, RecPage()),
           ],
         ),
       ),
