@@ -1,5 +1,5 @@
+import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -35,23 +35,31 @@ class _RegFormState extends State<RegForm> {
   }
 
   Future<String> getData() async {
-    // var response = await http.post(
-    //   Uri.encodeFull("https://10.0.2.2:8000/makeUser"),
-    //   body: {
-    //     'name' : _name,
-    //     'pass' : _password,
-    //     'email' : _email
-    //   },
-    //   headers: {
-    //     "Accept" : "application/json"
-    //   }
-    // );
-    var response = await http.get(
-      Uri.encodeFull("https://jsonplaceholder.typicode.com/posts"),
+    Map inputData = {
+      'pass' : _password,
+      'email' : _email,
+      'name' : _name,
+    };
+
+    var body = json.encode(inputData);
+
+    var response = await http.post(
+      Uri.encodeFull("http://tfc-app.herokuapp.com/makeUser"),
+      body: body,
       headers: {
-        "Accept" : "application/json"
-      });
-    print(response.body);
+        "Content-Type" : "application/json"
+      }
+    );
+    
+    Map data = json.decode(response.body);
+    
+    if(data["status"]){
+      Navigator.of(context).pop();
+    }
+    else{
+      Scaffold.of(context).showSnackBar(SnackBar(content : Text('Email ID already registered')));
+    }
+
   }
 
   @override

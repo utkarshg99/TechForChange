@@ -1,58 +1,80 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:tech_for_change/auth_state.dart';
-import 'package:tech_for_change/landing_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+class LoginPage extends StatelessWidget {
 
-class LoginPage extends StatefulWidget {
-  
   final StreamController<AuthenticationState> _streamController;
-
-
   LoginPage(this._streamController);
-
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  String _email, _password;
-
-  final _formKey = GlobalKey<FormState>();
-
-  login() async {
-    widget._streamController.add(AuthenticationState.authenticated());
-  }
-
-  Future<String> getLogin() async {
-    var response = await http.post(
-      Uri.encodeFull(''),
-      headers: {
-        "Accepted" : "application/json",
-      },
-      body: {
-        "email" : _email,
-        "pass" : _password,
-      }
-    );
-
-    print(response);
-  }
-
-  loginUser(){
-    if(_formKey.currentState.validate()){
-      _formKey.currentState.save();
-      Scaffold.of(context).showSnackBar(SnackBar(content : Text('Processing Data')));
-      getLogin();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF8185E2),
       resizeToAvoidBottomPadding: false,
-      body: WillPopScope(
+      body: LoginForm(_streamController),
+    );
+  }
+}
+class LoginForm extends StatefulWidget {
+
+  final StreamController<AuthenticationState> _streamController;
+  LoginForm(this._streamController);
+
+  @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  String _email, _password;
+
+  final _formKey = GlobalKey<FormState>();
+
+  login() async {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // prefs.setBool("login", true);
+    // prefs.setString("uid", _email);
+    widget._streamController.add(AuthenticationState.authenticated());
+    Navigator.of(context).pop();
+  }
+
+  Future<String> getLogin() async {
+
+    Map inputData = {
+      "email" : _email,
+      "pass" : _password
+    };
+
+    var body = json.encode(inputData);
+
+    var response = await http.post(
+      Uri.encodeFull('http://tfc-app.herokuapp.com/login'),
+      headers: {
+        "Content-Type" : "application/json",
+      },
+      body: body
+    );
+
+    Map data = json.decode(response.body);
+    if(data["status"]){
+      login();
+    }
+  }
+
+  loginUser(context){
+    if(_formKey.currentState.validate()){
+      Scaffold.of(context).showSnackBar(SnackBar(content : Text('Processing Data')));
+      _formKey.currentState.save();
+      getLogin();
+    }
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
         onWillPop: () async {
           Future.value(false);
         },
@@ -171,8 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         RaisedButton(
                           onPressed: (){
-                            Navigator.of(context).pop();
-                            login();
+                            loginUser(context);
                           },
                           color: Colors.deepPurple[400],
                           padding: EdgeInsets.fromLTRB(60.0, 15.0, 60.0, 15.0),
@@ -195,7 +216,6 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }
