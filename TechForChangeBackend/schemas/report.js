@@ -1,14 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var user = new Schema({
+var report = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     verify: Boolean,
     email: String,
-    pass: String,
     name: String,
     age:  { type: Number, default: 18 },
     gender:  { type: String, default: 'Not Specified' },
-    phone:  { type: String, default: 'Not Specified' }
+
 });
 
-module.exports = mongoose.model('User', user);
+module.exports = mongoose.model('Report', report);
