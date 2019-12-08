@@ -97,6 +97,41 @@ async function makeEntry(uid, fname, dest){
     await prom;
 }
 
+async function updateUser(data){
+    var conditions = {email: data.email}
+    var update = {$set : { 
+        name: data.name,
+        age: data.age,
+        gender: data.gender,
+        phone: data.phone
+     }}
+    var opts = {multi : true}
+    var prom = new Promise((resolve, reject) => {
+        USER.update(conditions, update, opts, function(err, numAffected){
+            resolve();
+        })
+    })
+    await prom;
+    return "Success";
+}
+
+async function getUser(data){
+    let data2 = {};
+    let alpha = {'email': data.email}
+    let promiseforcheck = new Promise(function (resolve, reject) {
+        var userrecord = USER.find(alpha, function (err, docs) {
+            if (err || typeof docs[0] === 'undefined') {
+                resolve();
+            } else {
+                data2=docs[0];
+                resolve();
+            }
+        });
+    });
+    await promiseforcheck;
+    return data2;
+}
+
 app.post('/putAudio', upload.single('audio'), (req, res, next) => {
     let uid = req.body.uid;
     let fname = uid+req.file.originalname;
@@ -131,6 +166,33 @@ router.post('/makeUser', (req, res) => {
     })
 })
 
+router.post('/updateUser', (req, res) => {
+    updateUser({
+        "email": req.body.email, 
+        "name": req.body.name, 
+        "age": req.body.age, 
+        "gender": req.body.gender, 
+        "phone": req.body.phone
+    }).then((idx) => {
+        res.json({
+            "status": idx
+        });
+        res.end();
+    })
+})
+
+router.post('/getUser', (req, res) => {
+    getUser({
+        'email': req.body.email
+    }).then( (idx) => {
+        if(idx!={})
+            res.json({ "data": idx, "status": true })
+        else
+            res.json({ "data": idx, "status": false })
+        res.end();
+    })
+})
+
 router.post('/login', (req, res) => {
     reglog({"pass": req.body.pass, "email": req.body.email}, false).then((idx) => {
         idx={
@@ -149,6 +211,13 @@ router.post('/login', (req, res) => {
         })
         res.end();
     })
+})
+
+router.get('/bitch', (req, res) => {
+    res.json({
+        "bitch":"sneaky lil bitch"
+    });
+    res.end();
 })
 
 // var url = 'mongodb://127.0.0.1:27017/tfc'
