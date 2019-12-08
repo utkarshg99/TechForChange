@@ -13,7 +13,7 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF8185E2),
+      backgroundColor: Colors.lightBlue,
       body: Center(
         child: Column(
           children: <Widget>[
@@ -23,6 +23,7 @@ class LandingPage extends StatelessWidget {
             Icon(
               Icons.local_hospital,
               size: 120.0,
+              color: Colors.white,
             ),
             SizedBox(
               height: 200.0,
@@ -36,7 +37,7 @@ class LandingPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => LoginPage(_streamController))
                   );
                 },
-                color: Colors.deepPurple[400],
+                color: Colors.lightBlue[900],
                 padding: EdgeInsets.fromLTRB(80.0, 15.0, 80.0, 15.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0)
@@ -62,7 +63,7 @@ class LandingPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => RegPage())
                   );
                 },
-                color: Colors.deepPurple[400],
+                color: Colors.lightBlue[900],
                 padding: EdgeInsets.fromLTRB(80.0, 15.0, 80.0, 15.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0)

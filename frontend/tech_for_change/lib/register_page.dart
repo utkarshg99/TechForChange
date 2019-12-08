@@ -7,7 +7,7 @@ class RegPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF8185E2),
+      backgroundColor: Colors.lightBlue,
       resizeToAvoidBottomPadding: false,
       body: RegForm(),
     );
@@ -96,7 +96,8 @@ class _RegFormState extends State<RegForm> {
                 Text(
                   "Register",
                   style: TextStyle(
-                    fontSize: 50.0
+                    fontSize: 50.0,
+                    color: Colors.white
                   ),
                 ),
                 SizedBox(
@@ -254,7 +255,7 @@ class _RegFormState extends State<RegForm> {
                         onPressed: (){
                           registerUser();
                         },
-                        color: Colors.deepPurple[400],
+                        color: Colors.lightBlue[900],
                         padding: EdgeInsets.fromLTRB(60.0, 15.0, 60.0, 15.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0)

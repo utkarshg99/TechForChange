@@ -12,7 +12,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF8185E2),
+      backgroundColor: Colors.lightBlue,
       resizeToAvoidBottomPadding: false,
       body: LoginForm(_streamController),
     );
@@ -33,9 +33,9 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
 
   login() async {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // prefs.setBool("login", true);
-    // prefs.setString("uid", _email);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("login", true);
+    prefs.setString("uid", _email);
     widget._streamController.add(AuthenticationState.authenticated());
     Navigator.of(context).pop();
   }
@@ -106,7 +106,8 @@ class _LoginFormState extends State<LoginForm> {
                   Text(
                     "Login",
                     style: TextStyle(
-                      fontSize: 50.0
+                      fontSize: 50.0,
+                      color: Colors.white
                     ),
                   ),
                   SizedBox(
@@ -195,7 +196,7 @@ class _LoginFormState extends State<LoginForm> {
                           onPressed: (){
                             loginUser(context);
                           },
-                          color: Colors.deepPurple[400],
+                          color: Colors.lightBlue[900],
                           padding: EdgeInsets.fromLTRB(60.0, 15.0, 60.0, 15.0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0)
