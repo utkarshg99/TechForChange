@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import "package:flutter/material.dart";
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:tech_for_change/auth_state.dart';
@@ -27,6 +27,13 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void passFunc(){
 
+  }
+
+  signOut() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("login", false);
+    prefs.remove("uid");
+     _streamController.add(AuthenticationState.signedOut());
   }
 
   void _showDialog(){
@@ -91,7 +98,7 @@ class _SettingsPageState extends State<SettingsPage> {
               RaisedButton(
                 child: Text("Logout"),
                 onPressed: (){
-                  _streamController.add(AuthenticationState.signedOut());
+                  signOut();
                 },
               ),
             ],
