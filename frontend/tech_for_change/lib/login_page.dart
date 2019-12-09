@@ -36,6 +36,24 @@ class _LoginFormState extends State<LoginForm> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool("login", true);
     prefs.setString("uid", _email);
+
+    var response = await http.post(
+      Uri.encodeFull('https://tfc-app.herokuapp.com/getUser'),
+      headers: {
+        'Content-Type' : 'application/json',
+      },
+      body: json.encode({'email' : _email}),
+    );
+
+    Map data = json.decode(response.body);
+    if(data['status']){
+      print(data['data']);
+      prefs.setInt("age", data['data']['age']);
+      prefs.setString("gender", data['data']['gender']);
+      prefs.setString("name", data['data']['name']);
+      prefs.setString('phone', data['data']['phone']);
+    }
+
     widget._streamController.add(AuthenticationState.authenticated());
     Navigator.of(context).pop();
   }
