@@ -38,7 +38,7 @@ class _LoginFormState extends State<LoginForm> {
     prefs.setString("uid", _email);
 
     var response = await http.post(
-      Uri.encodeFull('https://tfc-app.herokuapp.com/getUser'),
+      Uri.encodeFull('http://ec2-54-161-90-53.compute-1.amazonaws.com/getUser'),
       headers: {
         'Content-Type' : 'application/json',
       },
@@ -46,6 +46,7 @@ class _LoginFormState extends State<LoginForm> {
     );
 
     Map data = json.decode(response.body);
+    print(data);
     if(data['status']){
       print(data['data']);
       prefs.setInt("age", data['data']['age']);
@@ -53,7 +54,7 @@ class _LoginFormState extends State<LoginForm> {
       prefs.setString("name", data['data']['name']);
       prefs.setString('phone', data['data']['phone']);
     }
-
+    print('hello');
     widget._streamController.add(AuthenticationState.authenticated());
     Navigator.of(context).pop();
   }
@@ -66,9 +67,9 @@ class _LoginFormState extends State<LoginForm> {
     };
 
     var body = json.encode(inputData);
-
+    // print(body);
     var response = await http.post(
-      Uri.encodeFull('http://tfc-app.herokuapp.com/login'),
+      Uri.encodeFull('http://ec2-54-161-90-53.compute-1.amazonaws.com/login'),
       headers: {
         "Content-Type" : "application/json",
       },
@@ -76,7 +77,9 @@ class _LoginFormState extends State<LoginForm> {
     );
 
     Map data = json.decode(response.body);
+    print(data);
     if(data["status"]){
+      print('login');
       login();
     }
   }

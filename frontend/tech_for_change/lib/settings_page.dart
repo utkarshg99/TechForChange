@@ -31,8 +31,8 @@ class _SettingsPageState extends State<SettingsPage> {
 
   signOut() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
     prefs.setBool("login", false);
-    prefs.remove("uid");
      _streamController.add(AuthenticationState.signedOut());
   }
 

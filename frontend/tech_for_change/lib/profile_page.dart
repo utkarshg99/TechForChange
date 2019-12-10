@@ -45,19 +45,19 @@ class MapScreenState extends State<ProfilePage>
   int _agetemp;
 
   loadData() async {
-    print("data load");
+    // print("data load");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _controller_name.text = prefs.getString('name'); 
     _controller_email.text = prefs.getString('uid');
     _controller_phone.text = prefs.getString('phone')=='Not Specified' ? null : prefs.getString('phone');
     _gender = prefs.getString('gender')=='Not Specified' ? null : prefs.getString('gender');
     _age = prefs.getInt('age')==0 ? null : prefs.getInt('age');
-    print(_gender);
+    // print(_controller_phone.text);
   }
 
   updateData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
+    print(_controller_phone.text);
     Map inputData = {
       "email" : _controller_email.text,
       "name" : _controller_name.text,
@@ -67,9 +67,9 @@ class MapScreenState extends State<ProfilePage>
     };
 
     var body = json.encode(inputData);
-
+    print(body);
     var response = await http.post(
-      Uri.encodeFull('https://tfc-app.herokuapp.com/updateUser'),
+      Uri.encodeFull('http://ec2-54-161-90-53.compute-1.amazonaws.com/updateUser'),
       headers: {
         'Content-Type' : 'application/json',
       },
@@ -77,7 +77,8 @@ class MapScreenState extends State<ProfilePage>
     );
 
     Map data = json.decode(response.body);
-    print(data);
+    // print('hello');
+    // print(data);
     if(data['status']=='Success'){
       print('hello');
       prefs.setString('uid', _controller_email.text);
