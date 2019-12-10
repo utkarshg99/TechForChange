@@ -15,10 +15,10 @@ def runner():
             continue
         src = entry['dest']
         dest = './processed/'
-        idx = entry['_id']
         shutil.move(src, dest)
-        delete_query = { "_id": idx }
-        db.entries.delete_one(delete_query)
+        # idx = entry['_id']
+        # delete_query = { "_id": idx }
+        # db.entries.delete_one(delete_query)
 try:
     runner()
 except:

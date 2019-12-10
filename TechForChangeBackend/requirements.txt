@@ -1,1 +1,9 @@
 pymongo
+wave
+pandas
+numpy
+matplotlib
+sklearn
+scipy
+warnings
+keras

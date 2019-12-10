@@ -6,7 +6,7 @@ var user = new Schema({
     email: String,
     pass: String,
     name: String,
-    age:  { type: Number, default: 18 },
+    age:  { type: Number, default: 0 },
     gender:  { type: String, default: 'Not Specified' },
     phone:  { type: String, default: 'Not Specified' }
 });

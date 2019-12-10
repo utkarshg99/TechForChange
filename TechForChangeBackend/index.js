@@ -77,14 +77,14 @@ async function reglog(data, stat){
     })
 }
 
-async function makeEntry(uid, fname, dest){
+async function makeEntry(uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date){
     let prom = new Promise((resolve, reject) => {
         let newEntry = new ENTRY({
             _id: new mongoose.Types.ObjectId(),
             status: false,
-            uid,
+            uid, uidx,
             fname,
-            dest
+            dest, gender, weight, height, bmi, symptoms, remarks, date
         })
         newEntry.save((err) => {
             if (err) {
@@ -134,12 +134,20 @@ async function getUser(data){
 
 app.post('/putAudio', upload.single('audio'), (req, res, next) => {
     let uid = req.body.uid;
-    let fname = uid+req.file.originalname;
+    let uidx = req.body.uidx;
+    let fname = uidx+req.file.originalname;
     let src = destx+req.file.filename;
     let dest = 'unprocessed/'+fname;
+    let gender=req.body.gender;
+    let weight = parseFloat(req.body.weight);
+    let height = parseFloat(req.body.height);
+    let bmi = weight/(height*height);
+    let symptoms = req.body.symptoms;
+    let remarks = req.body.remarks;
+    let date = req.body.date;
     fs.copyFileSync(src, dest);
     fs.unlinkSync(src);
-    makeEntry(uid, fname, dest);
+    makeEntry(uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date);
     res.json({
         'status': true,
     });
