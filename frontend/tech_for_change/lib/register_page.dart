@@ -44,7 +44,7 @@ class _RegFormState extends State<RegForm> {
     var body = json.encode(inputData);
 
     var response = await http.post(
-      Uri.encodeFull("http://tfc-app.herokuapp.com/makeUser"),
+      Uri.encodeFull("http://ec2-54-161-90-53.compute-1.amazonaws.com/makeUser"),
       body: body,
       headers: {
         "Content-Type" : "application/json"

@@ -23,6 +23,11 @@ class RecordPage extends StatefulWidget {
 
 class _RecordPageState extends State<RecordPage> {
 
+  @override
+  void initState() {
+    loadData();
+  }
+
   final uploader = FlutterUploader();
 
   String _fileName;
@@ -56,15 +61,18 @@ class _RecordPageState extends State<RecordPage> {
   submitFormData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String _email = prefs.getString('uid');
-
+    String _uidx = _email.replaceAll('.', '_');
+    _uidx = _uidx.replaceAll('@', '_');
+    print(_uidx);
     final taskId = await uploader.enqueue(
-      url : 'https://tfc-app.herokuapp.com/putAudio',
+      url : 'http://ec2-54-161-90-53.compute-1.amazonaws.com/putAudio',
       files: [FileItem(filename: _fileName+'.mp4', savedDir: 'sdcard', fieldname: 'audio')],
       method: UploadMethod.POST,
       headers: {'Content-Type' : 'multipart/form-data',},
       data: {
         'date' : _date.toString(),
         'uid' : _email,
+        'uidx' : _uidx,
         'age' : _age.toString(),
         'gender' : _gender.toString(),
         'weight' : _weight.toString(),
@@ -72,7 +80,7 @@ class _RecordPageState extends State<RecordPage> {
         'symptoms' : _symptoms.toString(),
         'remark' : _remarks
       },
-      showNotification: false,
+      showNotification: true,
       tag: 'upload_audio',
     );
 
@@ -130,6 +138,14 @@ class _RecordPageState extends State<RecordPage> {
         )
       ),
     );
+  }
+
+  void loadData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _age = prefs.getInt('age');
+      _gender = prefs.getString('gender');
+    });
   }
 
   @override
