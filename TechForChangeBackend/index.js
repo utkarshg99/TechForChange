@@ -228,8 +228,8 @@ router.get('/bitch', (req, res) => {
     res.end();
 })
 
-// var url = 'mongodb://127.0.0.1:27017/tfc'
-var url = 'mongodb+srv://utkarsh:9044682600@heroku-ia22v.mongodb.net/snt?retryWrites=true&w=majority';
+var url = 'mongodb://127.0.0.1:27017/tfc'
+// var url = 'mongodb+srv://utkarsh:9044682600@heroku-ia22v.mongodb.net/snt?retryWrites=true&w=majority';
 var port = 8000
 port = process.env.PORT
 if (port == null || port == "") {
