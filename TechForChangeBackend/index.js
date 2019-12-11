@@ -97,6 +97,28 @@ async function makeEntry(uid, uidx, fname, dest, gender, weight, height, bmi, sy
     await prom;
 }
 
+async function findReports(uid) {
+    let report={};
+    let alpha={
+        uid,
+        status: true
+    };
+    let promiseforcheck = new Promise(function (resolve, reject) {
+        var userrecord = ENTRY.find(alpha, function (err, docs) {
+            if (err || typeof docs[0] === 'undefined') {
+                report.status=false
+                resolve();
+            } else {
+                report.status=true
+                report.data=docs;
+                resolve();
+            }
+        });
+    });
+    await promiseforcheck;
+    return report;
+}
+
 async function updateUser(data){
     var conditions = {email: data.email}
     var update = {$set : { 
@@ -147,11 +169,30 @@ app.post('/putAudio', upload.single('audio'), (req, res, next) => {
     let date = req.body.date;
     fs.copyFileSync(src, dest);
     fs.unlinkSync(src);
-    makeEntry(uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date);
-    res.json({
-        'status': true,
+    makeEntry(uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date).then(()=>{
+        res.json({
+            'status': true,
+        });
+        res.end();
+    }).catch(()=>{
+        res.json({
+            'status': false
+        })
+        res.end();
+    })
+})
+
+router.post('/getReport', (req, res)=>{
+    let uid = req.body.uid;
+    findReports(uid).then((idx) => {
+        res.json(idx);
+        res.end();
+    }).catch(() => {
+        res.json({
+            status: false,
+        });
+        res.end();
     });
-    res.end();
 })
 
 router.post('/makeUser', (req, res) => {

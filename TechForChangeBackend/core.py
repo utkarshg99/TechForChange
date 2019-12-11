@@ -9,25 +9,21 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-get_ipython().magic(u'matplotlib inline')
-
-
-
+# get_ipython().magic(u'matplotlib inline')
+import sys
 
 from pymongo import MongoClient
 uri='mongodb://127.0.0.1:27017/'
 client = MongoClient(uri)
 db=client.tfc
-entry = db.entries.find_one({'status':True})
 
 # In[2]:
 
 
 root = './unprocessed/'
 # filenames = [s.split('.')[0] for s in os.listdir(path = root) if '.wav' in s]
-fnx = entry["fname"]
-fnx = fnx[:len(fnx)-4]
-_idx = entry["_id"]
+fnx = sys.argv[1]
+_idx = sys.argv[2]
 filenames = [fnx]
 
 # In[3]:
@@ -442,6 +438,6 @@ bookednfo="crackles: "+str(cracklesx)+" % wheezes: "+str(wheezesx)
 db.entries.update_one({'_id': _idx},
 {'$set': {
     'final':bookednfo,
-    "status":True    
+    "status":True
   }
 }, upsert=False)
