@@ -77,7 +77,7 @@ async function reglog(data, stat){
     })
 }
 
-async function makeEntry(uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date){
+async function makeEntry(uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date, age){
     let prom = new Promise((resolve, reject) => {
         let newEntry = new ENTRY({
             _id: new mongoose.Types.ObjectId(),
