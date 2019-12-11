@@ -10,6 +10,7 @@ var entry = new Schema({
     gender: String,
     weight: Number,
     height: Number,
+    age: Number,
     symptoms: {type: String, default: ""},
     remarks: {type: String, default: ""},
     date: String,

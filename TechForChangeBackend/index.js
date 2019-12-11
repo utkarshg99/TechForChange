@@ -84,7 +84,7 @@ async function makeEntry(uid, uidx, fname, dest, gender, weight, height, bmi, sy
             status: false,
             uid, uidx,
             fname,
-            dest, gender, weight, height, bmi, symptoms, remarks, date
+            dest, gender, weight, height, bmi, symptoms, remarks, date, age
         })
         newEntry.save((err) => {
             if (err) {
@@ -167,10 +167,11 @@ app.post('/putAudio', upload.single('audio'), (req, res, next) => {
     let symptoms = req.body.symptoms;
     let remarks = req.body.remarks;
     let date = req.body.date;
+    let age = parseInt(req.body.age);
     fs.copyFileSync(src, dest);
     fs.unlinkSync(src);
-    console.log({uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date});
-    makeEntry(uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date).then(()=>{
+    console.log({uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date, age});
+    makeEntry(uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date, age).then(()=>{
         res.json({
             'status': true,
         });
