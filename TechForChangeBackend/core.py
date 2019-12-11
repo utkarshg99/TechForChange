@@ -244,7 +244,7 @@ def split_and_pad(original, desiredLength, sampleRate):
         src_end = min(src_start + samples_per_slice, n_samples)
         length = src_end - src_start
         copy = generate_padded_samples(soundclip[src_start:src_end], output_buffer_length)
-#         output.append((copy, original[1], original[2]))
+        # output.append((copy, original[1], original[2]))
         output.append(copy)
         src_start += length
     return output
@@ -317,7 +317,7 @@ from sklearn.model_selection import train_test_split
 
 def extract_sample(file, annotation_dict, root, target_rate, desired_length):
     cycle_list = []
-#     print(annotation_dict[file])
+    # print(annotation_dict[file])
     data = get_sound_samples(annotation_dict[file], file, root, target_rate)
     cycles_with_labels = [d[0] for d in data[1:]]
     cycle_list.extend(cycles_with_labels)
