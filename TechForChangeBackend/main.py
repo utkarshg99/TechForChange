@@ -18,6 +18,7 @@ def execute_file_transform(entry):
 def runner():
     while True:
         entry = db.entries.find_one({'status':False})
+        print(entry)
         if(entry == None):
             continue
         execute_file_transform(entry)
