@@ -176,7 +176,8 @@ app.post('/putAudio', upload.single('audio'), (req, res, next) => {
             'status': true,
         });
         res.end();
-    }).catch(()=>{
+    }).catch((err)=>{
+        console.log(err)
         res.json({
             'status': false
         })
