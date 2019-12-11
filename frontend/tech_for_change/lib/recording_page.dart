@@ -6,11 +6,19 @@ import 'package:audio_recorder/audio_recorder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_uploader/flutter_uploader.dart';
 
-
 class RecPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {Navigator.of(context).pop();},
+          icon: Icon(
+            Icons.arrow_back,
+          ),
+        ),
+      ),
       body: RecordPage(),
     );
   }
@@ -157,21 +165,6 @@ class _RecordPageState extends State<RecordPage> {
       child: Container(
         child: Column(
           children: <Widget>[
-            SizedBox(
-              height: 20.0,
-            ),
-            Row(
-              children: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: Icon(
-                    Icons.arrow_back,
-                  ),
-                )
-              ],
-            ),
             Container(
               height: 700.0,
               child: Form(
