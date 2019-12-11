@@ -10,9 +10,9 @@ db=client.tfc
 def execute_file_transform(entry):
     fnamew_oext=entry["fname"]
     fnamew_oext=fnamew_oext[:len(fnamew_oext)-4]
-    command="ffmpeg -i "+entry["dest"]+" ./unprocessed/"+fnamew_oext+".wav"
+    command="ffmpeg -i -y"+entry["dest"]+" ./unprocessed/"+fnamew_oext+".wav"
     os.system(command)
-    command="python3 annotation.py "+fnamew_oext
+    command="python3 annotation.py "+" ./unprocessed/"+fnamew_oext
     os.system(command)
 
 def runner():
@@ -24,7 +24,7 @@ def runner():
         execute_file_transform(entry)
         fnamew_oext=entry["fname"]
         fnamew_oext=fnamew_oext[:len(fnamew_oext)-4]
-        command = "python3 core.py "+fnamew_oext+" "+entry["_id"]
+        command = "python3 core.py "+fnamew_oext+" "+entry["uidx"]
         os.system(command)
 try:
     runner()

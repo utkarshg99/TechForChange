@@ -23,7 +23,7 @@ db=client.tfc
 root = './unprocessed/'
 # filenames = [s.split('.')[0] for s in os.listdir(path = root) if '.wav' in s]
 fnx = sys.argv[1]
-_idx = sys.argv[2]
+uidx = sys.argv[2]
 filenames = [fnx]
 
 # In[3]:
@@ -435,7 +435,7 @@ elif out == 2:
 
 bookednfo="crackles: "+str(cracklesx)+" % wheezes: "+str(wheezesx)
 
-db.entries.update_one({'_id': _idx},
+db.entries.update_one({'uidx': uidx},
 {'$set': {
     'final':bookednfo,
     "status":True
