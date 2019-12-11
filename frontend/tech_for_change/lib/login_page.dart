@@ -82,6 +82,9 @@ class _LoginFormState extends State<LoginForm> {
       print('login');
       login();
     }
+    else{
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text('Login Not Successful'),));
+    }
   }
 
   loginUser(context){
