@@ -170,7 +170,7 @@ app.post('/putAudio', upload.single('audio'), (req, res, next) => {
     let age = parseInt(req.body.age);
     fs.copyFileSync(src, dest);
     fs.unlinkSync(src);
-    console.log({uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date, age});
+    // console.log({uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date, age});
     makeEntry(uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date, age).then(()=>{
         res.json({
             'status': true,
