@@ -169,6 +169,7 @@ app.post('/putAudio', upload.single('audio'), (req, res, next) => {
     let date = req.body.date;
     fs.copyFileSync(src, dest);
     fs.unlinkSync(src);
+    console.log({uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date});
     makeEntry(uid, uidx, fname, dest, gender, weight, height, bmi, symptoms, remarks, date).then(()=>{
         res.json({
             'status': true,
