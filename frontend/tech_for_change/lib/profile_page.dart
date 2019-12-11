@@ -52,6 +52,8 @@ class MapScreenState extends State<ProfilePage>
     _controller_phone.text = prefs.getString('phone')=='Not Specified' ? null : prefs.getString('phone');
     _gender = prefs.getString('gender')=='Not Specified' ? null : prefs.getString('gender');
     _age = prefs.getInt('age')==0 ? null : prefs.getInt('age');
+    setState(() { 
+    });
     // print(_controller_phone.text);
   }
 
