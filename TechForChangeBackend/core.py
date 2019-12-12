@@ -30,26 +30,26 @@ filenames = [fnx]
 
 
 def Extract_Annotation_Data(file_name, root):
-    tokens = file_name.split('_')
-    recording_info = pd.DataFrame(data = [tokens], columns = ['Patient number', 'Recording index', 'Chest location','Acquisition mode','Recording equipment'])
+    # tokens = file_name.split('_')
+    # recording_info = pd.DataFrame(data = [tokens], columns = ['Patient number', 'Recording index', 'Chest location','Acquisition mode','Recording equipment'])
     recording_annotations = pd.read_csv(os.path.join(root, file_name + '.txt'), names = ['Start', 'End'], delimiter= '\t')
-    return (recording_info, recording_annotations)
+    return recording_annotations
 
 
 # In[4]:
 
 
-i_list = []
+# i_list = []
 rec_annotations = []
 rec_annotations_dict = {}
 s = filenames[0]
-(i,a) = Extract_Annotation_Data(s, root)
-i_list.append(i)
+a = Extract_Annotation_Data(s, root)
+# i_list.append(i)
 rec_annotations.append(a)
 rec_annotations_dict[s] = a
 
-recording_info = pd.concat(i_list, axis = 0)
-recording_info.head()
+# recording_info = pd.concat(i_list, axis = 0)
+# recording_info.head()
 
 
 # # Utility functions for reading .wav files (especially pesky 24bit .wav)
