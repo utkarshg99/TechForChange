@@ -13,8 +13,13 @@ def runner():
         if(entry == None):
             continue
         src = entry['dest']
+        srcx = src[:len(src)-4]
+        srctxt = srcx + '.txt'
+        srcwav = srcx + '.wav'
         dest = './processed/'
         shutil.move(src, dest)
+        shutil.move(srctxt, dest)
+        shutil.move(srcwav, dest)
         db.entries.update_one({'fname': entry['fname']},
         {'$set': {
             "postproc":True
