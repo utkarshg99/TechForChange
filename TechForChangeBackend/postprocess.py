@@ -9,12 +9,17 @@ db=client.tfc
 
 def runner():
     while True:
-        entry = db.entries.find_one({'status':True})
+        entry = db.entries.find_one({'status':True, 'postproc': False})
         if(entry == None):
             continue
         src = entry['dest']
         dest = './processed/'
         shutil.move(src, dest)
+        db.entries.update_one({'uidx': entry['uidx']},
+        {'$set': {
+            "postproc":True
+        }
+        }, upsert=False)
 try:
     runner()
 except:

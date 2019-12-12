@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 var entry = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     status: Boolean,
+    postproc: {type: Boolean, default: false},
     fname: String,
     uid: String,
     uidx: String,

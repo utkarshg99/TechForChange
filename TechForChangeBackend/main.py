@@ -26,7 +26,6 @@ def runner():
         fnamew_oext=fnamew_oext[:len(fnamew_oext)-4]
         command = "python3.6 core.py "+fnamew_oext+" "+entry["uidx"]
         os.system(command)
-        break
 try:
     runner()
 except:
