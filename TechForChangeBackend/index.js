@@ -274,10 +274,10 @@ router.get('/bitch', (req, res) => {
 
 var url = 'mongodb://127.0.0.1:27017/tfc'
 // var url = 'mongodb+srv://utkarsh:9044682600@heroku-ia22v.mongodb.net/snt?retryWrites=true&w=majority';
-var port = 8000
+var port = 8080
 port = process.env.PORT
 if (port == null || port == "") {
-  port = 8000
+  port = 8080
 }
 mongoose.connect(url, options, function (err) {
     app.use('/', router)
