@@ -26,7 +26,7 @@ for i in range(0, 2 * n, interval):
     # print(start/1000,"",end/1000)
     initial=str(start/1000)
     final=str(end/1000)
-    det=initial+"  "+final+"\n"
+    det=initial+"\t"+final+"\n"
     fh.write(det)
     counter = counter + 1
     if flag == 1: 
