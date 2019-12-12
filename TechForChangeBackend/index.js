@@ -267,7 +267,7 @@ router.post('/login', (req, res) => {
 
 router.get('/bitch', (req, res) => {
     res.json({
-        "bitch":"sneaky lil bitch"
+        "dibs":[{"bitch":"sneaky lil bitch"}]
     });
     res.end();
 })
