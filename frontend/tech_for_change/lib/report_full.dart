@@ -2,8 +2,12 @@ import 'package:card_settings/widgets/card_settings_panel.dart';
 import 'package:card_settings/widgets/information_fields/card_settings_header.dart';
 import 'package:card_settings/widgets/text_fields/card_settings_text.dart';
 import 'package:flutter/material.dart';
-
+import './report_data.dart';
 class ReportFull extends StatelessWidget {
+
+  final DataReport data;
+
+  ReportFull({Key key, @required this.data}) : super(key : key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +23,17 @@ class ReportFull extends StatelessWidget {
           )
         ),
       ),
-      body: ReportCard(),
+      body: ReportCard(data: this.data,),
     );
   }
 }
 
-class ReportCard extends StatefulWidget {
+class ReportCard extends StatefulWidget {  
+
+  final DataReport data;
+
+  ReportCard({Key key, @required this.data}) : super(key : key);
+
   @override
   _ReportCardState createState() => _ReportCardState();
 }
@@ -71,7 +80,7 @@ class _ReportCardState extends State<ReportCard> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  reportRow('Disease', 'COPD'),
+                  reportRow('Disease', widget.data.result),
                   SizedBox(
                     height: 10.0,
                   ),
@@ -79,7 +88,7 @@ class _ReportCardState extends State<ReportCard> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  reportRow('Date', 'COPD'),
+                  reportRow('Date', widget.data.date),
                   SizedBox(
                     height: 10.0,
                   ),
@@ -87,13 +96,13 @@ class _ReportCardState extends State<ReportCard> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  reportRow('Gender', 'COPD'),
+                  reportRow('Gender', widget.data.gender),
                   Divider(),
-                  reportRow('Age', 'COPD'),
+                  reportRow('Age', widget.data.age),
                   Divider(),
-                  reportRow('Height', 'COPD'),
+                  reportRow('Height', widget.data.height.toString()),
                   Divider(),
-                  reportRow('Weight', 'COPD'),
+                  reportRow('Weight', widget.data.weight.toString()),
                   SizedBox(
                     height: 10.0,
                   ),
@@ -101,9 +110,9 @@ class _ReportCardState extends State<ReportCard> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  reportRow('Symptoms', 'COPD'),
+                  reportRow('Symptoms', widget.data.symptoms),
                   Divider(),
-                  reportRow('Other Remarks', 'COPD'),
+                  reportRow('Other Remarks', widget.data.remarks),
                 ],
               ),
             ),

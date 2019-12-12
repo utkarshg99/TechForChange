@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:card_settings/card_settings.dart';
 import 'package:audio_recorder/audio_recorder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_uploader/flutter_uploader.dart';
+import 'package:tech_for_change/url.dart';
 
 class RecPage extends StatelessWidget {
   @override
@@ -44,7 +46,7 @@ class _RecordPageState extends State<RecordPage> {
   double _height;
   int _weight;
   List<String> _symptoms;
-  String _remarks;
+  String _remarks = '';
   DateTime _date;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -67,13 +69,15 @@ class _RecordPageState extends State<RecordPage> {
   }
 
   submitFormData() async {
+    _formKey.currentState.save();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String _email = prefs.getString('uid');
     String _uidx = _email.replaceAll('.', '_');
     _uidx = _uidx.replaceAll('@', '_');
     print(_uidx);
+    print(_remarks);
     final taskId = await uploader.enqueue(
-      url : 'http://ec2-54-161-90-53.compute-1.amazonaws.com/putAudio',
+      url : url + '/putAudio',
       files: [FileItem(filename: _fileName+'.mp4', savedDir: 'sdcard', fieldname: 'audio')],
       method: UploadMethod.POST,
       headers: {'Content-Type' : 'multipart/form-data',},
@@ -86,7 +90,7 @@ class _RecordPageState extends State<RecordPage> {
         'weight' : _weight.toString(),
         'height' : _height.toString(),
         'symptoms' : _symptoms.toString(),
-        'remark' : _remarks
+        'remarks' : _remarks.toString()
       },
       showNotification: true,
       tag: 'upload_audio',
@@ -189,7 +193,7 @@ class _RecordPageState extends State<RecordPage> {
                         });
                       },
                       onSaved: (value) {
-                        _gender = value;
+                        value==null ? null : _gender = value;
                       },
                     ),
                     CardSettingsNumberPicker(
@@ -203,8 +207,7 @@ class _RecordPageState extends State<RecordPage> {
                         });
                       },
                       onSaved: (value) {
-                        _age = value;
-                      }
+                        value==null ? null : _age = value;                      }
                     ),
                     CardSettingsDouble(
                       label: "Height",

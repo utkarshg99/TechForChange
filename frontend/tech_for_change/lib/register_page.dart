@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:tech_for_change/url.dart';
 
 class RegPage extends StatelessWidget {
   @override
@@ -44,7 +45,7 @@ class _RegFormState extends State<RegForm> {
     var body = json.encode(inputData);
 
     var response = await http.post(
-      Uri.encodeFull("http://ec2-54-161-90-53.compute-1.amazonaws.com/makeUser"),
+      Uri.encodeFull(url + "/makeUser"),
       body: body,
       headers: {
         "Content-Type" : "application/json"
