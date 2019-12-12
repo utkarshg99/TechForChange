@@ -24,7 +24,7 @@ def runner():
         execute_file_transform(entry)
         fnamew_oext=entry["fname"]
         fnamew_oext=fnamew_oext[:len(fnamew_oext)-4]
-        command = "python3.6 core.py "+fnamew_oext+" "+entry["uidx"]
+        command = "python3.6 core.py "+fnamew_oext
         os.system(command)
 try:
     runner()

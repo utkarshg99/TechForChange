@@ -15,7 +15,7 @@ def runner():
         src = entry['dest']
         dest = './processed/'
         shutil.move(src, dest)
-        db.entries.update_one({'uidx': entry['uidx']},
+        db.entries.update_one({'fname': entry['fname']},
         {'$set': {
             "postproc":True
         }

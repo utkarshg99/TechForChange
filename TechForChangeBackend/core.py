@@ -23,8 +23,9 @@ db=client.tfc
 root = './unprocessed/'
 # filenames = [s.split('.')[0] for s in os.listdir(path = root) if '.wav' in s]
 fnx = sys.argv[1]
-uidx = sys.argv[2]
+# uidx = sys.argv[2]
 filenames = [fnx]
+fnamex = fnx+'.mp4'
 
 # In[3]:
 
@@ -419,7 +420,6 @@ labels[1] = np.sum(predictions==1)
 labels[2] = np.sum(predictions==2)
 labels[3] = np.sum(predictions==3)
 out = np.argmax(labels)
-print(out)
 cracklesx=True
 wheezesx=True
 
@@ -434,8 +434,9 @@ elif out == 2:
 #     print("No crackles or Wheezes")
 
 bookednfo="crackles: "+str(cracklesx)+" % wheezes: "+str(wheezesx)
+print(bookednfo)
 
-db.entries.update_one({'uidx': uidx},
+db.entries.update_one({'fname': fnamex},
 {'$set': {
     'final':bookednfo,
     "status":True
