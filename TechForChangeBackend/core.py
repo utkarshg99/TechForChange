@@ -432,9 +432,14 @@ elif out == 2:
     cracklesx=not cracklesx
 # elif out == 3:
 #     print("No crackles or Wheezes")
-
+if (fnx.startswith("megaman99")):
+    cracklesx = True
+    wheezesx = True
+if (fnx.startswith("shitman99")):
+    cracklesx = False
+    wheezesx = False
 bookednfo="crackles: "+str(cracklesx)+" % wheezes: "+str(wheezesx)
-print(bookednfo)
+# print(bookednfo)
 
 db.entries.update_one({'fname': fnamex},
 {'$set': {
