@@ -74,10 +74,11 @@ class _RecordPageState extends State<RecordPage> {
     String _email = prefs.getString('uid');
     String _uidx = _email.replaceAll('.', '_');
     _uidx = _uidx.replaceAll('@', '_');
+    String newurl = url + '/putAudio';
     print(_uidx);
     print(_remarks);
     final taskId = await uploader.enqueue(
-      url : url + '/putAudio',
+      url : newurl,
       files: [FileItem(filename: _fileName+'.mp4', savedDir: 'sdcard', fieldname: 'audio')],
       method: UploadMethod.POST,
       headers: {'Content-Type' : 'multipart/form-data',},

@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import './report_data.dart';
 class ReportFull extends StatelessWidget {
 
-  final DataReport data;
+  Map data;
 
   ReportFull({Key key, @required this.data}) : super(key : key);
 
   @override
   Widget build(BuildContext context) {
+    print(this.data);
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
@@ -30,7 +31,7 @@ class ReportFull extends StatelessWidget {
 
 class ReportCard extends StatefulWidget {  
 
-  final DataReport data;
+  Map data;
 
   ReportCard({Key key, @required this.data}) : super(key : key);
 
@@ -68,6 +69,8 @@ class _ReportCardState extends State<ReportCard> {
 
   @override
   Widget build(BuildContext context) {
+    print("hello");
+    print(widget.data);
     return Container(
       child: Column(
         children: <Widget>[
@@ -80,7 +83,9 @@ class _ReportCardState extends State<ReportCard> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  reportRow('Disease', widget.data.result),
+                  reportRow('Crackles', widget.data['final'].toString().split(' ')[1]),
+                  Divider(),
+                  reportRow('Wheezes', widget.data['final'].toString().split(' ')[4]),
                   SizedBox(
                     height: 10.0,
                   ),
@@ -88,7 +93,7 @@ class _ReportCardState extends State<ReportCard> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  reportRow('Date', widget.data.date),
+                  reportRow('Date', widget.data['date'].toString().split(' ')[0]),
                   SizedBox(
                     height: 10.0,
                   ),
@@ -96,13 +101,13 @@ class _ReportCardState extends State<ReportCard> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  reportRow('Gender', widget.data.gender),
+                  reportRow('Gender', widget.data['gender']),
                   Divider(),
-                  reportRow('Age', widget.data.age),
+                  reportRow('Age', widget.data['age'].toString()),
                   Divider(),
-                  reportRow('Height', widget.data.height.toString()),
+                  reportRow('Height', widget.data['height'].toString()),
                   Divider(),
-                  reportRow('Weight', widget.data.weight.toString()),
+                  reportRow('Weight', widget.data['weight'].toString()),
                   SizedBox(
                     height: 10.0,
                   ),
@@ -110,9 +115,23 @@ class _ReportCardState extends State<ReportCard> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  reportRow('Symptoms', widget.data.symptoms),
+                  reportRow('Symptoms', widget.data['symptoms'].toString().substring(1, widget.data['symptoms'].toString().length-1)),
                   Divider(),
-                  reportRow('Other Remarks', widget.data.remarks),
+                  reportRow('Other Remarks', ''),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(13.0, 5.0, 10.0, 5.0),
+                    child : Row(
+                      children: <Widget>[
+                        Container(
+                          width: 200.0,
+                          child: Text(widget.data['remarks']=='null' ? '' : widget.data['remarks'],
+                          style: TextStyle(
+                            fontSize: 17.0
+                          ),),
+                        ),
+                      ],
+                    )
+                  )
                 ],
               ),
             ),

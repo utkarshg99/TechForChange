@@ -34,7 +34,7 @@ class _ViewReportListState extends State<ViewReportList> {
 
   String _email;
   bool _status = false;
-  List<DataReport> fullReportData;
+  List<dynamic> fullReportData;
 
   loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -48,12 +48,14 @@ class _ViewReportListState extends State<ViewReportList> {
       body: json.encode({'uid' : _email}),
     );
     Map data = json.decode(response.body);
+    // print(data);
     _status = data['status'];
     if(_status){
       setState(() {
         fullReportData = data['data'];
       });
     }
+    print(fullReportData);
   }
 
   Widget makeListTile(String date, int index){
@@ -81,6 +83,7 @@ class _ViewReportListState extends State<ViewReportList> {
           size: 35.0,
         ),
         onPressed: () {
+          // print(fullReportData[index]);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => ReportFull(data: fullReportData[index],)),
@@ -95,14 +98,19 @@ class _ViewReportListState extends State<ViewReportList> {
       elevation: 8.0,
       margin: EdgeInsets.symmetric(vertical: 6.0, horizontal: 10.0),
       child: Container(
-        child: makeListTile("date", index),
+        child: makeListTile(fullReportData[index]['date'].toString().split(' ')[0], index),
       ),
     );
   }
 
   @override
-  Widget build(BuildContext context) {
+  initState(){
     loadData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // print(fullReportData.length);
     Widget child;
     if(_status==false){
       child = Center(
@@ -124,6 +132,7 @@ class _ViewReportListState extends State<ViewReportList> {
           shrinkWrap: true,
           itemCount: fullReportData.length,
           itemBuilder: (BuildContext context, int index) {
+            // print(index);
             return makeCard(index);
           },
         ),
