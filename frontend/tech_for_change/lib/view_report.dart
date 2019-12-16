@@ -19,6 +19,7 @@ class ViewReport extends StatelessWidget {
               Navigator.of(context).pop();
             },
         ),
+        title: Text("View Reports"),
       ),
       body: ViewReportList(),
     );

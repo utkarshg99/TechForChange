@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tech_for_change/book.dart';
 import 'package:tech_for_change/recording_page.dart';
 import 'package:tech_for_change/view_report.dart';
 
@@ -68,7 +69,7 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 40.0,),
             RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.note_add, "New Recording", "New", Theme.of(context).primaryColor, context, RecPage()),
             RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.view_list, "View Reports", "View", Theme.of(context).primaryColor, context, ViewReport()),
-            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.person_pin_circle, "Book Appointment", "Book", Theme.of(context).primaryColor, context, RecPage()),
+            RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.person_pin_circle, "Book Appointment", "Book", Theme.of(context).primaryColor, context, BookPage()),
             RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.chat, "Chat", "Open", Theme.of(context).primaryColor, context, RecPage()),
           ],
         ),

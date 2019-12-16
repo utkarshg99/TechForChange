@@ -20,6 +20,7 @@ class RecPage extends StatelessWidget {
             Icons.arrow_back,
           ),
         ),
+        title: Text("New Recording"),
       ),
       body: RecordPage(),
     );
