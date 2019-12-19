@@ -12,7 +12,6 @@ class RecPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {Navigator.of(context).pop();},
@@ -164,7 +163,7 @@ class _RecordPageState extends State<RecordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
@@ -178,7 +177,7 @@ class _RecordPageState extends State<RecordPage> {
                       label: 'Date',
                       onSaved: (value) {
                         _date = value;
-                      },                       
+                      },
                     ),
                     CardSettingsHeader(label: "Personal Info",),
                     CardSettingsListPicker(

@@ -34,22 +34,12 @@ class _FeedFormState extends State<FeedForm> {
       child : Row(
         children: <Widget>[
           Container(
-            width: 200.0,
             child: Text(label,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 17.0
             ),),
           ),
-          Container(
-            child: Text(
-              data,
-              style: TextStyle(
-                fontSize: 17.0
-              ),
-              overflow: TextOverflow.fade,
-            ),
-          )
         ],
       )
     );
@@ -57,17 +47,47 @@ class _FeedFormState extends State<FeedForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        padding: EdgeInsets.all(15.0),
-        child: Column(
+    return  SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical : 15.0),
+        child:  Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            reportRow('Generate New Report', ''),
-            reportRow('View Previous Reports', ''),
-            reportRow('Update Profile', ''),     
+            reportRow("How to generate new report?", ""),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 13.0),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: Text('1. Select New Recording card. \n2. Enter your personal details.\n3. Click the red button to start recording audio from \n    connected stethoscope.\n4. Stop recording when all the data has been collected.\n5. Submit the report for diagnosis.'),
+                  )
+                ],
+              ),
+            ),
+            reportRow("How to view previous reports?", ""),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 13.0),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: Text('1. Select View Reports card. \n2. Click on the arrow next to the report you want to view.\n3. Navigate through the report results.'),
+                  )
+                ],
+              ),
+            ),
+            reportRow("How to update your profile?", ""),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 13.0),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: Text('1. Select the edit(pencil) button. \n2. Edit your personal details.\n3. Click Save (Green Button) to save your changes.\n4. Click Cancel (Red Button) to discard your changes.'),
+                  )
+                ],
+              ),
+            ),
           ],
         ),
-      ),
     );
   }
 }

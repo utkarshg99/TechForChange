@@ -13,7 +13,6 @@ class ReportFull extends StatelessWidget {
   Widget build(BuildContext context) {
     print(this.data);
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -72,15 +71,11 @@ class _ReportCardState extends State<ReportCard> {
   Widget build(BuildContext context) {
     print("hello");
     print(widget.data);
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 700,
-            child: Form(
-              child: CardSettings(
+    return SingleChildScrollView(
+      padding: EdgeInsets.all(15.0),
+        child : Column(
                 children: <Widget>[
-                  CardSettingsHeader(label: "Result",),
+                  CardSettingsHeader(label: "Result"),
                   SizedBox(
                     height: 10.0,
                   ),
@@ -150,28 +145,8 @@ class _ReportCardState extends State<ReportCard> {
                     height: 10.0,
                   ),
                   reportRow('Symptoms', widget.data['symptoms'].toString().substring(1, widget.data['symptoms'].toString().length-1)),
-                  // Divider(),
-                  // reportRow('Other Remarks', ''),
-                  // Container(
-                  //   padding: EdgeInsets.fromLTRB(13.0, 5.0, 10.0, 5.0),
-                  //   child : Row(
-                  //     children: <Widget>[
-                  //       Container(
-                  //         width: 200.0,
-                  //         child: Text(widget.data['remarks']=='null' ? '' : widget.data['remarks'],
-                  //         style: TextStyle(
-                  //           fontSize: 17.0
-                  //         ),),
-                  //       ),
-                  //     ],
-                  //   )
-                  // )
                 ],
               ),
-            ),
-          )
-        ],
-      ),
     );
   }
 }

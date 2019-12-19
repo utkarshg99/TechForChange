@@ -63,8 +63,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: Container(
+    return SingleChildScrollView(
         child: Column(
           children: <Widget>[
             SizedBox(height: 40.0,),
@@ -74,7 +73,6 @@ class HomePage extends StatelessWidget {
             RoundCard((MediaQuery.of(context).size.height - 156.0)/4, Icons.feedback, "Help", "Open", Theme.of(context).primaryColor, context, FeedbackPage()),
           ],
         ),
-      ),
     );
   }
 }
