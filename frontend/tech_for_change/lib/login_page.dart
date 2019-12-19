@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:tech_for_change/auth_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import './url.dart';
 class LoginPage extends StatelessWidget {
 
   final StreamController<AuthenticationState> _streamController;
@@ -38,7 +39,7 @@ class _LoginFormState extends State<LoginForm> {
     prefs.setString("uid", _email);
 
     var response = await http.post(
-      Uri.encodeFull('http://ec2-54-161-90-53.compute-1.amazonaws.com/getUser'),
+      Uri.encodeFull(url + '/getUser'),
       headers: {
         'Content-Type' : 'application/json',
       },
@@ -69,7 +70,7 @@ class _LoginFormState extends State<LoginForm> {
     var body = json.encode(inputData);
     // print(body);
     var response = await http.post(
-      Uri.encodeFull('http://ec2-54-161-90-53.compute-1.amazonaws.com/login'),
+      Uri.encodeFull(url + '/login'),
       headers: {
         "Content-Type" : "application/json",
       },

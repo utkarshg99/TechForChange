@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:tech_for_change/url.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -71,7 +72,7 @@ class MapScreenState extends State<ProfilePage>
     var body = json.encode(inputData);
     print(body);
     var response = await http.post(
-      Uri.encodeFull('http://ec2-54-161-90-53.compute-1.amazonaws.com/updateUser'),
+      Uri.encodeFull(url + '/updateUser'),
       headers: {
         'Content-Type' : 'application/json',
       },
@@ -140,7 +141,7 @@ class MapScreenState extends State<ProfilePage>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 new CircleAvatar(
-                                  backgroundColor: Colors.deepPurple,
+                                  backgroundColor: Colors.blue,
                                   radius: 25.0,
                                   child: new Icon(
                                     Icons.camera_alt,
@@ -456,7 +457,7 @@ class MapScreenState extends State<ProfilePage>
   Widget _getEditIcon() {
     return new GestureDetector(
       child: new CircleAvatar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.blue,
         radius: 14.0,
         child: new Icon(
           Icons.edit,
