@@ -71,8 +71,8 @@ class _SettingsPageState extends State<SettingsPage> {
               });
               onPress();
             },
-            activeColor: Colors.deepPurple[600],
-            activeTrackColor: Colors.deepPurple[300],
+            activeColor: Colors.blue,
+            activeTrackColor: Colors.blue[300],
           ),
         ],
       ),

@@ -15,6 +15,7 @@ class _BuilderPageState extends State<BuilderPage> {
   final StreamController<AuthenticationState> _streamController = new StreamController<AuthenticationState>.broadcast();
 
   bool _loading = true;
+  AuthenticationState authS = AuthenticationState.initial();
 
   Widget buildUI(BuildContext context, AuthenticationState authState){
     // print(authState);
@@ -31,7 +32,7 @@ class _BuilderPageState extends State<BuilderPage> {
     if(prefs.containsKey("login")){
       if(prefs.getBool("login")){
         print('hello');
-        _streamController.add(AuthenticationState.authenticated());
+        authS = AuthenticationState.authenticated();
         return;
       }
     }
@@ -46,8 +47,10 @@ class _BuilderPageState extends State<BuilderPage> {
   Widget build(BuildContext context) {
     if(_loading){
       fetchURL().then((value) {
-        setState(() {
-          _loading = false;
+        getValueSF().then((value) {
+          setState(() {
+            _loading = false;
+          });
         });
       });
     }
@@ -63,10 +66,9 @@ class _BuilderPageState extends State<BuilderPage> {
       );
     }
     else{
-      getValueSF();
       return new StreamBuilder<AuthenticationState>(
         stream: _streamController.stream,
-        initialData: new AuthenticationState.initial(),
+        initialData: authS,
         builder: (BuildContext context, AsyncSnapshot<AuthenticationState> snapshot){
           final state = snapshot.data;
           return buildUI(context, state);

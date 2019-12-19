@@ -74,13 +74,12 @@ class _ViewReportListState extends State<ViewReportList> {
       ),
       title: Text(
         "Report",
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        style: TextStyle(fontWeight: FontWeight.bold),
       ),
       subtitle: Text(date),
       trailing: IconButton(
         icon: Icon(
           Icons.navigate_next,
-          color: Colors.white,
           size: 35.0,
         ),
         onPressed: () {

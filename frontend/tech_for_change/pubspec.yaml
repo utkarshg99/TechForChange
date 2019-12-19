@@ -31,6 +31,9 @@ dependencies:
   flutter_visualizers: ^0.0.2
   google_maps_flutter: ^0.5.11
   flutter_webview_plugin: ^0.3.10
+  flutter_launcher_icons: ^0.7.0
+  flutter_localizations:
+    sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -40,6 +43,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+    android : true
+    ios : true
+    image_path : "assets/images/logo.jpg"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
@@ -55,7 +62,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/as.png
-
+    - assets/images/logo.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

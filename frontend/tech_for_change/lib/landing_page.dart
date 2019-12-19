@@ -20,11 +20,7 @@ class LandingPage extends StatelessWidget {
             SizedBox(
               height: 150.0,
             ),
-            Icon(
-              Icons.local_hospital,
-              size: 120.0,
-              color: Colors.white,
-            ),
+            Image.asset('assets/images/logo.jpg'),
             SizedBox(
               height: 200.0,
             ),

@@ -164,11 +164,7 @@ class _RecordPageState extends State<RecordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        Future.value(false);
-      },
-      child: Container(
+    return Container(
         child: Column(
           children: <Widget>[
             Container(
@@ -233,12 +229,6 @@ class _RecordPageState extends State<RecordPage> {
                       initialValues: <String>['Fever'],
                       onSaved: (value) {
                         _symptoms = value;
-                      },
-                    ),
-                    CardSettingsParagraph(
-                      label: 'Other Remarks',
-                      onSaved: (value) {
-                        _remarks = value;
                       },
                     ),
                     Column(
@@ -314,7 +304,6 @@ class _RecordPageState extends State<RecordPage> {
             )
           ],
         ) 
-      ),
     ); 
   }
 }
